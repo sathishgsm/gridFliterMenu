@@ -1,0 +1,33 @@
+.x-menu-item-focus .x-menu-item-arrow-default, .x-menu-item-active .x-menu-item-arrow-default{
+    top:8px
+}
+.x-menu-item-arrow-default{
+    top:8px
+}
+.x-menu-body-default .x-menu-icon-separator {
+    display: none !important;
+}
+
+    .custom-filter-header .x-column-header-text-container:after {
+            content: ""; /* FontAwesome Filter Funnel Icon code */
+          
+            font-size: 13px;
+            color: #b0b0b0;
+            margin-left: 6px;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            background: url(./images/filter-icon.svg);
+            width: 15px;
+            height: 15px;
+            background-size: 100%;
+            background-position:center;
+            background-repeat: no-repeat;
+            position: absolute;
+    right: 20px;
+        }
+        .custom-filter-header .x-column-header-text-container:hover:after {
+            color: #4a77b4; /* Changes color to blue on hover */
+        }
+
+        

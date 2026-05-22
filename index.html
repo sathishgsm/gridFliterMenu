@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Combined Grid: Row Menu & Header Filters</title>
+
+    <link rel="stylesheet" href="./theme/light/resources/eg-light-all.css" />
+  <script src="ext-all.js"></script>
+  <link href="eg-icons-light.css" rel="stylesheet">
+  <link href="gridcustom.css" rel="stylesheet">
+    <style>
+    
+    </style>
+
+    <script>
+        Ext.onReady(function () {
+
+            // ==========================================
+            // 1. DEFINE THE ROW ACTION CONTEXT MENU
+            // ==========================================
+            var rowContextMenu = Ext.create('Ext.menu.Menu', {
+                width: 220,
+                closeAction: 'hide',
+                items: [
+                    {
+                        text: 'Session Management',
+                        iconCls: 'x-fa fa-sync',
+                        menu: {
+                            items: [
+                                { 
+                                    text: 'LogOff Session',
+                                    handler: function() {
+                                        var record = rowContextMenu.getTargetRecord();
+                                        Ext.Msg.alert('Action', 'Logging off: ' + record.get('user'));
+                                    }
+                                },
+                                { text: 'Disconnect Session' },
+                                { text: 'Send Message' }
+                            ]
+                        }
+                    },
+                    { 
+                        text: 'Group Policy', iconCls: 'x-fa fa-shield-alt' ,
+                          handler: function() {
+                                        var record = rowContextMenu.getTargetRecord();
+                                        Ext.Msg.alert('Action', 'Logging off: ' + record.get('user'));
+                                    }
+                    },
+                    { text: 'User Environment', iconCls: 'x-fa fa-user' },
+                    { text: 'Network Analysis', iconCls: 'x-fa fa-network-wired' },
+                    '-',
+                    { text: 'Historical report', iconCls: 'x-fa fa-history' },
+                    { text: 'Copy', iconCls: 'x-fa fa-copy' }
+                ],
+                setTargetRecord: function(record) { this.targetRecord = record; },
+                getTargetRecord: function() { return this.targetRecord; }
+            });
+
+
+            // ==========================================
+            // 2. DEFINE THE FILTER POPUP MENU GENERATOR
+            // ==========================================
+            var createFilterMenu = function(grid, dataIndex, columnName) {
+                return Ext.create('Ext.menu.Menu', {
+                    bodyPadding: 10,
+                    width: 400,
+                    shadow: true,
+                    items: [
+                        {
+                            xtype: 'form',
+                            border: false,
+                            bodyStyle: 'background:transparent;',
+                            layout: 'vbox',
+                            defaults: { width: '100%', margin: '0 0 10 0' },
+                            items: [
+                                {
+                                    xtype: 'label',
+                                    text: 'Show metrics:',
+                                    style: 'font-weight: bold; font-size: 13px;'
+                                },
+                                {
+                                    xtype: 'fieldcontainer',
+                                    layout: 'hbox',
+                                    items: [
+                                        { xtype: 'label', text: 'Where', margin: '5 10 0 0', width: 40 },
+                                        { xtype: 'combobox', store: [columnName], value: columnName, disabled: true, width: 100, margin: '0 5 0 0' },
+                                        { xtype: 'combobox', name: 'operator', store: ['is like', 'equals'], value: 'is like', editable: false, width: 100, margin: '0 5 0 0' },
+                                        { xtype: 'textfield', name: 'filterValue', emptyText: 'joel', flex: 1 }
+                                    ]
+                                },
+                                {
+                                    xtype: 'button',
+                                    text: '+ Add Filter Condition',
+                                    ui: 'default-toolbar',
+                                    style: 'background: transparent; border: none; text-align: left; color: #4a77b4; font-weight: normal;'
+                                },
+                                {
+                                    xtype: 'fieldcontainer',
+                                    layout: { type: 'hbox', pack: 'end' },
+                                    defaults: { margin: '0 0 0 10' },
+                                    items: [
+                                        {
+                                            xtype: 'button',
+                                            text: 'Clear',
+                                            width: 80,
+                                            handler: function(btn) {
+                                                var form = btn.up('form').getForm();
+                                                form.findField('filterValue').setValue('');
+                                                grid.getStore().clearFilter();
+                                                btn.up('menu').hide();
+                                            }
+                                        },
+                                        {
+                                            xtype: 'button',
+                                            text: 'Filter',
+                                            width: 80,
+                                            style: 'background-color: #4a77b4; color: white;',
+                                            handler: function(btn) {
+                                                var form = btn.up('form').getForm();
+                                                var val = form.getValues().filterValue;
+
+                                                if (val) {
+                                                    grid.getStore().clearFilter(true);
+                                                    grid.getStore().filterBy(function(rec) {
+                                                        return String(rec.get(dataIndex)).toLowerCase().indexOf(val.toLowerCase()) !== -1;
+                                                    });
+                                                } else {
+                                                    grid.getStore().clearFilter();
+                                                }
+                                                btn.up('menu').hide();
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                });
+            };
+
+            // ==========================================
+            // 3. DEFINE AND RENDER THE GRID PANEL
+            // ==========================================
+            Ext.create('Ext.grid.Panel', {
+                renderTo: document.body,
+                title: 'User Management Dashboard',
+                width: 850,
+                height: 400,
+                
+              
+                
+                store: {
+                   fields: [
+                        'name',
+                        'state',
+                        'cssClass',
+                        'displayName'
+                    ],
+                    data: [
+                        {
+                            name: 'AVD_Infrastructure',
+                            state: 'state_HIGH',
+                            layer: 'Kube Control Plane',
+                            displayName: 'AVD_Infrastructure'
+                        },
+
+                        {
+                            name: 'best_buy',
+                            state: 'state_HIGH',
+                             layer: 'Web User Experience',
+                            displayName: 'best_buy'
+                        },
+
+                        {
+                            name: 'EasyKart-ECommerce-Site',
+                            state: 'state_HIGH',
+                            layer: 'AWS Security',
+                            displayName: 'EasyKart-ECommerce-Site'
+                        },
+
+                        {
+                            name: 'Fiori Purchase Order',
+                            state: 'state_HIGH',
+                            layer: 'Network',
+                            displayName: 'Fiori Purchase Order'
+                        },
+
+                        {
+                            name: 'Fly-Trip-Web',
+                            state: 'state_HIGH',
+                             layer: 'Inside View of Desktops',
+                            displayName: 'Fly-Trip-Web'
+                        },
+
+                        {
+                            name: 'Petclinic_Prod',
+                            state: 'state_HIGH',
+                            layer: 'Network',
+                            displayName: 'Petclinic_Prod'
+                        },
+
+                        {
+                            name: 'zapstore',
+                            state: 'state_HIGH',
+                            layer: 'Network',
+                            displayName: 'zapstore'
+                        },
+                        {
+                            name: 'EasyKart-ECommerce-Site',
+                            state: 'state_HIGH',
+                            layer: 'AWS Security',
+                            displayName: 'EasyKart-ECommerce-Site'
+                        },
+
+                        {
+                            name: 'Fiori Purchase Order',
+                            state: 'state_HIGH',
+                            layer: 'Network',
+                            displayName: 'Fiori Purchase Order'
+                        },
+
+                        {
+                            name: 'Fly-Trip-Web',
+                            state: 'state_HIGH',
+                             layer: 'Inside View of Desktops',
+                            displayName: 'Fly-Trip-Web'
+                        },
+
+                        {
+                            name: 'Petclinic_Prod',
+                            state: 'state_HIGH',
+                            layer: 'Network',
+                            displayName: 'Petclinic_Prod'
+                        },
+
+                        {
+                            name: 'zapstore',
+                            state: 'state_HIGH',
+                            layer: 'Network',
+                            displayName: 'zapstore'
+                        }
+
+                    ]
+                },
+
+                // Added 'custom-filter-header' class for visual display of filter funnel icons
+                columns: [
+                     {
+                        text: 'Service Name',
+                        dataIndex: 'name',
+                        flex: 2,
+                         cls: 'custom-filter-header'
+                    },
+
+                    {
+                        text: 'State',
+                        dataIndex: 'state',
+                        flex: 1,
+                         cls: 'custom-filter-header'
+                    },
+
+                    {
+                        text: 'Layer',
+                        dataIndex: 'layer',
+                        flex: 1.5,
+                         cls: 'custom-filter-header'
+                    },
+
+                    {
+                        text: 'Display Name',
+                        dataIndex: 'displayName',
+                        flex: 2,
+                        cls: 'custom-filter-header'
+                    }
+                    // { text: 'User', dataIndex: 'user', flex: 1.5, cls: 'custom-filter-header' },
+                    // { text: 'Stress Level', dataIndex: 'stress', flex: 1, cls: 'custom-filter-header' },
+                    // { text: 'Machine', dataIndex: 'machine', flex: 1, cls: 'custom-filter-header' },
+                    // { text: 'State', dataIndex: 'state', flex: 1, cls: 'custom-filter-header' },
+                    // { text: 'Idle Time', dataIndex: 'idle', flex: 1, cls: 'custom-filter-header' }
+                ],
+
+                // Grid View Config listeners target the rows directly to handle the right-click menu cleanly
+                viewConfig: {
+                    listeners: {
+                        rowcontextmenu: function(view, record, node, rowIndex, e) {
+                            e.stopEvent(); // Kill browser default context menu
+                            
+                            rowContextMenu.setTargetRecord(record);
+                            rowContextMenu.showAt(e.getXY()); // Present custom row action menu at coordinates
+                            
+                            return false;
+                        }
+                    }
+                },
+
+                // Main grid container listeners handle column header interactions
+                listeners: {
+                    headerclick: function(ct, column, e) {
+                        e.stopEvent(); // Stop original sort dropdown behaviors
+
+                        if (!column.customFilterMenu) {
+                            column.customFilterMenu = createFilterMenu(this, column.dataIndex, column.text);
+                        }
+                        
+                        column.customFilterMenu.showBy(column.getEl(), 't-b?');
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body></body>
+</html>

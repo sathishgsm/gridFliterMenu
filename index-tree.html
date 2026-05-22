@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExtJS 7.8 TreeView</title>
+
+  <!-- ExtJS 7 Classic Toolkit (GPL) -->
+  <link rel="stylesheet" href="./theme/light/resources/eg-light-all.css" />
+  <script src="ext-all.js"></script>
+  <link href="eg-icons-light.css" rel="stylesheet">
+<style>
+   .eGtree .x-tree-elbow, 
+   .eGtree .x-tree-elbow-end, 
+   .eGtree .x-tree-elbow-line {
+    background-image: none !important;
+}
+
+
+.eGtree .x-tree-elbow-img {
+    width: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 0px;
+}
+.eGtree .x-tree-elbow-plus {
+    background-image: url(./tree/elbow-end-plus-new.png);
+}
+
+.eGtree .x-tree-elbow-end-plus {
+    background-image: url(./tree/elbow-end-plus-new.png);
+}
+
+.eGtree .x-grid-tree-node-expanded .x-tree-elbow-plus {
+    background-image: url(./tree/elbow-minus-new.png);
+}
+
+.eGtree .x-grid-tree-node-expanded .x-tree-elbow-end-plus {
+    background-image: url(./tree/elbow-end-minus-new.png);
+}
+.eGtree .x-tree-icon-custom {
+    margin: auto 0px auto auto;
+    height: 16px;
+}
+.eGtree .x-tree-node-text {
+    padding-left: 5px;
+}
+
+.eGtree .x-grid-tree-node-leaf .x-tree-elbow-img {
+    width: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 0px;
+}
+.eGtree .eGtree-level-2 .x-tree-icon-custom {
+    margin: auto 0px auto 0px;
+    height: 16px;
+}
+.eGtree .eGtree-level-2 .x-tree-elbow-img{
+    width: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 0px;
+}
+.eGtree .eGtree-level-2 .x-tree-elbow-img,
+.eGtree .eGtree-level-2 .x-tree-icon-parent-expanded,
+.eGtree .eGtree-level-2 .x-tree-icon-custom
+{
+    position: relative;
+    left: 1px;
+}
+.eGtree .eGtree-level-3 .x-tree-elbow-img,
+.eGtree .eGtree-level-3 .x-tree-icon
+{
+ 
+    position: relative;
+    left: 2px;
+}
+.eGtree .eGtree-level-4 .x-tree-elbow-img,
+.eGtree .eGtree-level-4 .x-tree-icon
+{
+ 
+    position: relative;
+    left: 3px;
+}
+.eGtree .eGtree-level-5 .x-tree-elbow-img,
+.eGtree .eGtree-level-5 .x-tree-icon
+{
+ 
+    position: relative;
+    left: 5px;
+}
+.eGtree .eGtree-level-2 .x-tree-node-text{
+    padding-left: 5px;
+}
+.eGtree .eGtree-level-3 .x-tree-node-text {
+    padding-left: 7px;
+}
+.eGtree .eGtree-level-4 .x-tree-node-text {
+    padding-left: 9px;
+}
+.eGtree .eGtree-level-5 .x-tree-node-text {
+    padding-left: 11px;
+}
+
+
+.eGelbowtree .x-tree-elbow-img {
+    width: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 0px;
+}
+.eGelbowtree .x-tree-node-text {
+    padding-left: 5px;
+}
+
+.eGelbowtree .x-tree-icon-custom {
+    margin: auto 0px auto auto;
+    height: 16px;
+}
+.eGelbowtree .x-tree-node-text {
+    padding-left: 5px;
+}
+
+.eGelbowtree .x-grid-tree-node-leaf .x-tree-elbow-img {
+    width: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 0px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-icon-custom {
+    margin: auto 0px auto 0px;
+    height: 16px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-elbow-img{
+    width: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 0px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-2 .x-tree-icon-parent-expanded,
+.eGelbowtree .eGtree-level-2 .x-tree-icon-custom
+{
+    position: relative;
+    left: 0px;
+}
+.eGelbowtree .eGtree-level-3 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-3 .x-tree-icon
+{
+ 
+    position: relative;
+    left: 0px;
+}
+.eGelbowtree .eGtree-level-4 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-4 .x-tree-icon
+{
+ 
+    position: relative;
+    left: 0px;
+}
+.eGelbowtree .eGtree-level-5 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-5 .x-tree-icon
+{
+ 
+    position: relative;
+    left: 0px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-node-text{
+    padding-left: 3px;
+}
+.eGelbowtree .eGtree-level-3 .x-tree-node-text {
+    padding-left: 5px;
+}
+.eGelbowtree .eGtree-level-4 .x-tree-node-text {
+    padding-left: 7px;
+}
+.eGelbowtree .eGtree-level-5 .x-tree-node-text {
+    padding-left: 9px;
+}
+
+
+.pane{
+       display:flex
+   }
+</style>
+
+  
+</head>
+<body>
+
+ 
+  <script>
+  Ext.onReady(function () {
+    var store = Ext.create('Ext.data.TreeStore', {
+            root: {
+                expanded: true,
+                children: [{
+                    text: "Zones",
+                    icon:'./images/zone_HIGH.svg',
+                    leaf: true
+                }, {
+                    text: "INDIA",
+                    expanded: true,
+                    children: [{
+                        text: "Delhi",
+                        iconCls:'service20_GRAY',
+                        leaf: true
+                    }, {
+                        text: "Chennai",
+                        iconCls:'component_INTERMEDIATE',
+                        leaf: true
+                    }]
+                }, {
+                    text: "USA",
+                    iconCls:'component_INTERMEDIATE',
+                    expanded: true,
+                    children: [{
+                        text: "New York City", 
+                        iconCls:'aggregate_GOOD',
+                        leaf: true
+                    }, {
+                        text: "Los Angeles",
+                        iconCls:'aggregate_GOOD',
+                        leaf: true
+                    }, {
+                        text: "Houston",
+                        iconCls:'aggregate_HIGH',
+                        leaf: true
+                    }, {
+                        text: "Phoenix",
+                        iconCls:'aggregate_GOOD',
+                        leaf: true
+                    }]
+                }, {
+                    text: "China",
+                    leaf: true
+                }, {
+                    text: "HONG KONG",
+                    leaf: true
+                }, {
+                    text: "Sencha",
+                    icon:'./images/zone_INTERMEDIATE.svg',
+                    expanded: true,
+                    children: [{
+                        text: "Touch",
+                        iconCls:'service20_UNKNOWN',
+                        expanded: false,
+                        children: [{
+                            text: 'Viewport',
+                            leaf: true
+                        }, {
+                            text: 'Panel',
+                            leaf: true
+                        }, {
+                            text: 'Carousel',
+                            leaf: true
+                        }]
+                    }, {
+                        text: "ExtJS",
+                        expanded: true,
+                        children: [{
+                            text: 'viewport.Viewport',
+                            leaf: true
+                        }, {
+                            text: 'panel.Panel',
+                            leaf: true
+                        }, {
+                            text: 'tree.Panel',
+                            leaf: true
+                        }]
+                    }]
+                }]
+            }
+        });
+
+        var treepanel = Ext.define('Fiddle.treeSample', {
+            extend: 'Ext.tree.Panel',
+           
+            title: 'Filter Tree Panel panel',
+            store: store,
+            width: 300,
+            viewConfig: { 
+                stripeRows: true ,
+                getRowClass: function(record) {
+                    //adding class for level
+                var depth = record.get('depth'); // built-in NodeInterface field
+                return 'eGtree-level-' + depth;
+        }
+            },
+            height: 550,
+            rootVisible: false,
+            hideHeaders: true,
+            useArrows: false,
+            renderTo: Ext.getBody(),
+            rowLines : true, 
+            initComponent: function() {
+                var me = this,
+                    lastFilterValue = "";
+
+                me.columns = [{
+                    xtype: 'treecolumn',
+                    flex: 1,
+                    dataIndex: 'text',
+                    scope: me,
+                    renderer: function(value) {
+                        var searchString = this.searchField.getValue();
+
+                        if (searchString.length > 0) {
+                            return this.strMarkRedPlus(searchString, value);
+                        }
+
+                        return value;
+                    }
+                }];
+
+                Ext.apply(me, {
+                    store: store,
+                    dockedItems: [{
+                        xtype: 'textfield',
+                        dock: 'top',
+                        emptyText: 'Search',
+                        enableKeyEvents: true,
+
+                        triggers: {
+                            clear: {
+                                cls: 'x-form-clear-trigger',
+                                handler: 'onClearTriggerClick',
+                                hidden: true,
+                                scope: 'this'
+                            },
+                            search: {
+                                cls: 'x-form-search-trigger',
+                                weight: 1,
+                                handler: 'onSearchTriggerClick',
+                                scope: 'this'
+                            }
+                        },
+
+                        onClearTriggerClick: function() {
+                            this.setValue();
+                            me.store.clearFilter();
+                            this.getTrigger('clear').hide();
+                        },
+
+                        onSearchTriggerClick: function() {
+                            me.filterStore(this.getValue());
+                        },
+
+                        listeners: {
+                            keyup: {
+                                fn: function(field, event, eOpts) {
+                                    var value = field.getValue();
+
+                                    // Only filter if they actually changed the field value.
+                                    // Otherwise the view refreshes and scrolls to top.
+                                    if (value == '') {
+                                        field.getTrigger('clear').hide();
+                                        me.filterStore(value);
+                                        lastFilterValue = value;
+                                    } else if (value && value !== lastFilterValue) {
+                                        field.getTrigger('clear')[(value.length > 0) ? 'show' : 'hide']();
+                                        me.filterStore(value);
+                                        lastFilterValue = value;
+                                    }
+                                },
+                                buffer: 300
+                            },
+
+                            render: function(field) {
+                                this.searchField = field;
+                            },
+
+                            scope: me
+                        }
+                    }]
+                });
+
+                me.callParent(arguments);
+
+            },
+
+            filterStore: function(value) {
+                var me = this,
+                    store = me.store,
+                    searchString = value.toLowerCase(),
+                    filterFn = function(node) {
+                        var children = node.childNodes,
+                            len = children && children.length,
+                            visible = v.test(node.get('text')),
+                            i;
+
+                        // If the current node does NOT match the search condition
+                        // specified by the user...
+                        if (!visible) {
+
+                            // Check to see if any of the child nodes of this node
+                            // match the search condition.  If they do then we will
+                            // mark the current node as visible as well.
+                            for (i = 0; i < len; i++) {
+                                if (children[i].isLeaf()) {
+                                    visible = children[i].get('visible');
+                                } else {
+                                    visible = filterFn(children[i]);
+                                }
+                                if (visible) {
+                                    break;
+                                }
+                            }
+
+                        } else { // Current node matches the search condition...
+
+                            // Force all of its child nodes to be visible as well so
+                            // that the user is able to select an example to display.
+                            for (i = 0; i < len; i++) {
+                                children[i].set('visible', true);
+                            }
+
+                        }
+
+                        return visible;
+                    },
+                    v;
+
+                if (searchString.length < 1) {
+                    store.clearFilter();
+                } else {
+                    v = new RegExp(searchString, 'i');
+                    store.getFilters().replaceAll({
+                        filterFn: filterFn
+                    });
+                }
+            },
+
+            strMarkRedPlus: function(search, subject) {
+                return subject.replace(
+                new RegExp('(' + search + ')', "gi"), "<span style='color: red;'><b>$1</b></span>");
+            }
+
+
+        });
+
+        Ext.create('Fiddle.treeSample',{
+            renderTo:'zone',
+            userCls:'eGtree',
+        });
+        Ext.create('Fiddle.treeSample',{
+            userCls:'eGelbowtree',
+            renderTo:'zonew'
+        });
+        
+  })
+  </script>
+  <div class="pane">
+      <div id="zone"></div>
+      <div id="zonew"></div>
+  </div>
+</body>
+</html>

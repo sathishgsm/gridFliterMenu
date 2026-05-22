@@ -1,0 +1,171 @@
+
+/*userCls="eGtree" for plain [+][-] icons */
+/*userCls="eGelbowtree" for plain [L+][L-] icons */
+.eGtree .x-tree-elbow, 
+.eGtree .x-tree-elbow-end, 
+.eGtree .x-tree-elbow-line {
+ background-image: none !important;
+}
+
+
+.eGtree .x-tree-elbow-img {
+ width: 20px;
+ height: 24px;
+ line-height: 24px;
+ margin-right: 0px;
+}
+.eGtree .x-tree-elbow-plus {
+ background-image: url(./tree/elbow-end-plus-new.png);
+}
+
+.eGtree .x-tree-elbow-end-plus {
+ background-image: url(./tree/elbow-end-plus-new.png);
+}
+
+.eGtree .x-grid-tree-node-expanded .x-tree-elbow-plus {
+ background-image: url(./tree/elbow-minus-new.png);
+}
+
+.eGtree .x-grid-tree-node-expanded .x-tree-elbow-end-plus {
+ background-image: url(./tree/elbow-end-minus-new.png);
+}
+.eGtree .x-tree-icon-custom {
+ margin: auto 0px auto auto;
+ height: 16px;
+}
+.eGtree .x-tree-node-text {
+ padding-left: 5px;
+}
+
+.eGtree .x-grid-tree-node-leaf .x-tree-elbow-img {
+ width: 20px;
+ height: 24px;
+ line-height: 24px;
+ margin-right: 0px;
+}
+.eGtree .eGtree-level-2 .x-tree-icon-custom {
+ margin: auto 0px auto 0px;
+ height: 16px;
+}
+.eGtree .eGtree-level-2 .x-tree-elbow-img{
+ width: 20px;
+ height: 24px;
+ line-height: 24px;
+ margin-right: 0px;
+}
+.eGtree .eGtree-level-2 .x-tree-elbow-img,
+.eGtree .eGtree-level-2 .x-tree-icon-parent-expanded,
+.eGtree .eGtree-level-2 .x-tree-icon-custom
+{
+ position: relative;
+ left: 1px;
+}
+.eGtree .eGtree-level-3 .x-tree-elbow-img,
+.eGtree .eGtree-level-3 .x-tree-icon
+{
+
+ position: relative;
+ left: 2px;
+}
+.eGtree .eGtree-level-4 .x-tree-elbow-img,
+.eGtree .eGtree-level-4 .x-tree-icon
+{
+
+ position: relative;
+ left: 3px;
+}
+.eGtree .eGtree-level-5 .x-tree-elbow-img,
+.eGtree .eGtree-level-5 .x-tree-icon
+{
+
+ position: relative;
+ left: 5px;
+}
+.eGtree .eGtree-level-2 .x-tree-node-text{
+ padding-left: 5px;
+}
+.eGtree .eGtree-level-3 .x-tree-node-text {
+ padding-left: 7px;
+}
+.eGtree .eGtree-level-4 .x-tree-node-text {
+ padding-left: 9px;
+}
+.eGtree .eGtree-level-5 .x-tree-node-text {
+ padding-left: 11px;
+}
+
+
+.eGelbowtree .x-tree-elbow-img {
+ width: 20px;
+ height: 24px;
+ line-height: 24px;
+ margin-right: 0px;
+}
+.eGelbowtree .x-tree-node-text {
+ padding-left: 5px;
+}
+
+.eGelbowtree .x-tree-icon-custom {
+ margin: auto 0px auto auto;
+ height: 16px;
+}
+.eGelbowtree .x-tree-node-text {
+ padding-left: 5px;
+}
+
+.eGelbowtree .x-grid-tree-node-leaf .x-tree-elbow-img {
+ width: 20px;
+ height: 24px;
+ line-height: 24px;
+ margin-right: 0px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-icon-custom {
+ margin: auto 0px auto 0px;
+ height: 16px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-elbow-img{
+ width: 20px;
+ height: 24px;
+ line-height: 24px;
+ margin-right: 0px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-2 .x-tree-icon-parent-expanded,
+.eGelbowtree .eGtree-level-2 .x-tree-icon-custom
+{
+ position: relative;
+ left: 0px;
+}
+.eGelbowtree .eGtree-level-3 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-3 .x-tree-icon
+{
+
+ position: relative;
+ left: 0px;
+}
+.eGelbowtree .eGtree-level-4 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-4 .x-tree-icon
+{
+
+ position: relative;
+ left: 0px;
+}
+.eGelbowtree .eGtree-level-5 .x-tree-elbow-img,
+.eGelbowtree .eGtree-level-5 .x-tree-icon
+{
+
+ position: relative;
+ left: 0px;
+}
+.eGelbowtree .eGtree-level-2 .x-tree-node-text{
+ padding-left: 3px;
+}
+.eGelbowtree .eGtree-level-3 .x-tree-node-text {
+ padding-left: 5px;
+}
+.eGelbowtree .eGtree-level-4 .x-tree-node-text {
+ padding-left: 7px;
+}
+.eGelbowtree .eGtree-level-5 .x-tree-node-text {
+ padding-left: 9px;
+}

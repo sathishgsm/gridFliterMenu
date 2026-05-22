@@ -1,0 +1,265 @@
+
+
+
+@import 'eg-light-all_1.css';
+@import 'eg-light-all_2.css';
+@import 'eg-light-all_3.css';
+@import 'eg-light-all_4.css';
+/*
+@import 'eg-light-all-debug_1.css';
+@import 'eg-light-all-debug_2.css';
+@import 'eg-light-all-debug_3.css';
+@import 'eg-light-all-debug_4.css';
+*/
+
+@import url("/final/styles/fontIcons-components.css");
+@import url("/final/styles/fontIcons-general.css");
+
+
+/*  Below items need to create in core with build package - start */
+
+.x-tip-tooltipWithPanel {
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 75%);
+    -moz-box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 75%);
+    box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 75%);
+    border: 1px solid #343434;
+}
+
+/*  Below items need to create in core with build package - end */
+
+/* Below is the default color code variables which was used in page specific styles - start here */
+
+:root{
+    --body-bg:#ffffff;
+    --font-color:#2a292a;
+    --font-color2:#000000;
+    --alink-color:#ffffff;
+    
+    /*  table border and row color */
+    --border-color:#c6c6c6;
+    --row-color:#ffffff;
+    --row-alt-color:#f4f4f4;
+	--row-over-color:#deedf7;
+    
+    --row-header-color:#d9d9d9;
+    --column-header-color:#ebebeb;
+    --column-subheader-color:#f4f4f4;
+    --grid-pagination-color:#e6e6e6;
+
+	--monitorDefaultPanel-body-bg:#e4e5e6;
+	--shadow-color:rgba(0,0,0,0.2);
+
+	--egFrameBg:#3b3b3b;
+	--font-family:'Roboto', sans-serif;
+
+    /* state color  */
+    --high:#cd0f0f;
+    --intermediate:#fa9d1c;
+    --low:#ccc100;
+    --good:#0c9a12;
+    --unknown:#30a1d9;
+    --gray:#8b8b8b;
+}
+
+/* Above is the default color code variables which was used in page specific styles - end here */
+
+
+#perPanel-body,
+#perPanel-body .x-panel-body-default,
+#gridContainer-body{
+	background:var(--monitorDefaultPanel-body-bg);
+    color:#000000;
+}
+/*----------------- performanceSummary ------------------------------*/
+.performanceSummary .ps-border{
+	border:1px solid #c5c5c5;
+}
+.performanceSummary .ps-border-right{
+	border-right:1px solid #f1f1f1;
+}
+.performanceSummary .ps-background,
+.performanceSummary .ps-background .x-panel-body-default{
+	background:#fff !important;
+}
+.performanceSummary .NoHealthyBg{
+	background:#eaeaea;
+}
+.performanceSummary .state_bar{
+	height:2px;
+}
+.state_bar{
+	background:#e9e9e9;
+}
+.state_background_UNKNOWN{
+	background: var(--unknown);
+}
+.state_background_GOOD{
+	background: var(--good);
+}
+.state_background_INTERMEDIATE{
+	background: var(--intermediate);
+}
+.state_background_LOW{
+	background: var(--low);
+}
+.state_background_HIGH{
+	background: var(--high);
+}
+.performanceSummary .state_border_UNKNOWN,
+.performanceSummary .state_border_GOOD,
+.performanceSummary .state_border_INTERMEDIATE,
+.performanceSummary .state_border_LOW,
+.performanceSummary .state_border_HIGH{
+	border-width:1px;
+	border-style:solid;
+}
+.state_border_UNKNOWN{
+	border-color:var(--unknown);;
+}
+.state_border_GOOD{
+	border-color: var(--good);
+}
+.state_border_INTERMEDIATE{
+	border-color: var(--intermediate);
+}
+.state_border_LOW{
+	border-color: var(--low);
+}
+.state_border_HIGH{
+	border-color:var(--high);
+}
+/*----------------- performanceSummary ------------------------------*/
+
+/*--------------------------- ui:eg-plain-tabPanel ----------------------------------*/
+.x-tab-bar-eg-plain-tabPanel,
+.x-panel-body-eg-plain-tabPanel{
+	background:#fff;
+}
+.x-tab-bar-eg-plain-tabPanel,
+.x-panel-body-eg-plain-tabPanel{
+	border-color:var(--border-color);
+	border-style:solid;
+}
+.x-tab-bar-eg-plain-tabPanel,.x-panel-body-eg-plain-tabPanel{
+	border-width:1px;
+}
+.x-panel-body-eg-plain-tabPanel{
+	border-top-width:0px;
+}
+.x-tab-eg-plain-tabPanel{
+	padding: 7px 0px 5px 0px;
+    height: 32px;
+	margin: 0px 15px 0px 5px !important;
+    border-bottom: 3px solid transparent;
+	outline:none !important;
+	background-color:transparent !important;
+}
+.x-tab-eg-plain-tabPanel.x-tab-active{
+	border-bottom: 3px solid #2665c9;
+	z-index: 3;
+}
+.x-tab-inner-eg-plain-tabPanel{
+	display:contents;
+	font-weight:700;
+	font-size:14px;
+}
+.x-tab-bar-body-eg-plain-tabPanel{
+	height:32px;
+	min-height:32px;
+	padding:0px;
+}
+.x-tab-bar-strip-eg-plain-tabPanel {
+    height: 2px;
+    background: #bebebe;
+}
+/*--------------------------- ui:eg-plain-tabPanel ----------------------------------*/
+
+/* for tree grid row background not set when scroll - issue fix start */
+.x-autowidth-table .x-grid-item-container{
+    display:grid;
+}
+.x-autowidth-table .x-grid-item-container table{
+    grid-column:1;
+}
+/* for tree grid row background not set when scroll - issue fix end */
+/*-------------------------- Scrollbar change for Firefox ------------------------------------*/
+@-moz-document url-prefix() {
+    html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+        scrollbar-width: thin;
+    }
+}
+/*-------------------------- Scrollbar change for Firefox ------------------------------------*/
+/*---- newGridPanel common changes ----*/
+.x-panel-newGridPanel .x-toolbar-default{
+	border-color:#c6c6c6;
+	background-color:#f7f7f7;
+}
+/*---- newGridPanel common changes ----*/
+.x-tip-settingsTooltip{
+	z-index: 18990 !important;
+}
+
+.x-panel-newGridPanel .x-column-header-inner.x-column-header-over .x-column-header-text-inner{
+   cursor: pointer;
+}
+
+/*----- EgConfigurationsData ----*/
+.x-fieldset-EgConfigurationsData{
+	border: 1px solid #E6E6E6 !important;
+	padding:10px;
+	border-radius:8px;
+	background:transparent;
+}
+.x-fieldset-header-EgConfigurationsData{
+	padding:0px 5px;
+	font-weight:500;
+}
+.EgConfigurationsData-box-row:last-child{
+	padding-bottom:0px !important;
+}
+#EgConfigurationsData-map .gm-style-iw{
+	min-width:200px !important; 
+	border: 1px solid #3D5376;
+    box-shadow: 0px 6px 9px #00000029;
+	border-radius:8px;
+	padding:10px;
+}
+#EgConfigurationsData-map .gm-style-iw-d{
+	overflow:auto !important;
+	position:relative;
+	top:-3px;
+	padding-bottom:7px;
+}
+#EgConfigurationsData-map .gm-style-iw-chr button{
+	height:14px !important;
+	width:14px !important;
+	margin-right:5px !important;
+	margin-top:2px !important;
+}
+#EgConfigurationsData-map .gm-style-iw-chr button span{
+	height:14px !important;
+	width:14px !important;
+	margin: 0px !important;
+}
+#EgConfigurationsData-map .gm-style .gm-style-iw-tc{
+	filter: drop-shadow(0px 1px #3D5376);
+}
+#EgConfigurationsData-map .gm-style .gm-style-iw-tc::after{
+	height:7px;
+	width:17px;
+}
+.x-btn-EgConfigToggleBtn-small{
+	background:#C6C6C6;
+}
+.x-btn-EgConfigToggleBtn-small.x-btn-pressed{
+	background:#1897E2;
+}
+/*----- EgConfigurationsData ----*/
+/*----- maps  ----*/
+[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+/*----- maps  ----*/
+
